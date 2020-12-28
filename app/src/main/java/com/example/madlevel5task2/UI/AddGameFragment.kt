@@ -44,7 +44,7 @@ class AddGameFragment : Fragment() {
             onAddGame()
             findNavController().popBackStack()
         }
-    }
+    }//
 
     private fun formatDay(day: Int): String {
         if (day<= 9) return "0$day"
