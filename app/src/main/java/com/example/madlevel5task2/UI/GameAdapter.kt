@@ -1,12 +1,10 @@
 package com.example.madlevel5task2.UI
 
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
-import com.example.madlevel5task2.R
+import com.example.MadLevel5Task2.R
 import com.example.madlevel5task2.Viewmodel.Game
 import kotlinx.android.synthetic.main.item_game.view.*
 import java.time.ZoneId
@@ -14,7 +12,6 @@ import java.time.ZoneId
 class GameAdapter(private val games: List<Game>): RecyclerView.Adapter<GameAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        @RequiresApi(Build.VERSION_CODES.O)
         fun databind(game: Game){
             itemView.tvGameTitle.text = game.title
             itemView.tvPlatform.text = game.platform
@@ -43,7 +40,6 @@ class GameAdapter(private val games: List<Game>): RecyclerView.Adapter<GameAdapt
         return games.size
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.databind(games[position])
 

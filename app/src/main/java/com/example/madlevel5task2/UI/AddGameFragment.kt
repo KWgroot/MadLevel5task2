@@ -1,19 +1,16 @@
 package com.example.madlevel5task2.UI
 
-import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
-import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.madlevel5task2.R
+import com.example.MadLevel5Task2.R
 import com.example.madlevel5task2.Viewmodel.Game
-import com.example.madlevel5task2.Viewmodel.GameViewModelViewModel
+import com.example.madlevel5task2.Viewmodel.GameViewModel
 import kotlinx.android.synthetic.main.fragment_game_add.*
 import java.time.LocalDate
 import java.time.ZoneId
@@ -22,11 +19,11 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 /**
- * A simple [Fragment] subclass as the default destination in the navigation.
+ * A simple [Fragment] subclass as the second destination in the navigation.
  */
 class AddGameFragment : Fragment() {
 
-    private val viewModel: GameViewModelViewModel by viewModels()
+    private val viewModel: GameViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +33,6 @@ class AddGameFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_game_add, container, false)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -44,7 +40,7 @@ class AddGameFragment : Fragment() {
             onAddGame()
             findNavController().popBackStack()
         }
-    }//
+    }
 
     private fun formatDay(day: Int): String {
         if (day<= 9) return "0$day"
@@ -56,7 +52,6 @@ class AddGameFragment : Fragment() {
         else return month.toString()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun onAddGame() {
         val gameTitle = tiTitle.text.toString()
         val gamePlatform = tiPlatform.text.toString()

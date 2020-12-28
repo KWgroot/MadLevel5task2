@@ -1,7 +1,10 @@
-package com.example.madlevel5task2.Dao
+package com.example.madlevel5task2.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.Query
 import com.example.madlevel5task2.Viewmodel.Game
 
 @Dao

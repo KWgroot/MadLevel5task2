@@ -1,8 +1,6 @@
 package com.example.madlevel5task2.UI
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -10,14 +8,14 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import com.example.madlevel5task2.R
-import com.example.madlevel5task2.Viewmodel.GameViewModelViewModel
+import com.example.MadLevel5Task2.R
+import com.example.madlevel5task2.Viewmodel.GameViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
-    private val viewModel: GameViewModelViewModel by viewModels()
+    private val viewModel: GameViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,8 +23,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
 
         navController = findNavController(R.id.nav_host_fragment)
-
-        fab.setOnClickListener {
+        addFab.setOnClickListener {
             navController.navigate(
                 R.id.action_gameBacklogFragment_to_addGameFragment
             )
@@ -57,11 +54,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fabToggler() {
-        navController.addOnDestinationChangedListener { _,       destination, _ ->
-            if (destination.id in arrayOf(R.id.addGameFragment)) {
-                fab.hide()
-            } else {
-                fab.show()
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id in arrayOf(R.id.addGameFragment)){
+                addFab.hide()
+            }else{
+                addFab.show()
             }
         }
     }

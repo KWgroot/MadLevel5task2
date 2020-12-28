@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:backgroundTint="@color/colorBackgroundDark"
     android:theme="@style/Theme.MaterialComponents.Light"
-    tools:context=".UI.AddGameFragment">
+    tools:context="com.example.madlevel5task2.UI.AddGameFragment">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/saveFab"
@@ -17,8 +17,7 @@
         android:background="#FFFFFF"
         android:backgroundTint="@color/colorPrimary"
         app:backgroundTint="@color/colorPrimary"
-        app:srcCompat="@android:drawable/ic_menu_save"
-        tools:ignore="ContentDescription" />
+        app:srcCompat="@android:drawable/ic_menu_save" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
