@@ -3,26 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/gameBacklogFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.madlevel5task2.UI.AddGameFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
+        android:id="@+id/gameBacklogFragment"
+        android:name="com.example.madlevel5task2.UI.BacklogFragment"
+        android:label="fragment_backlog_game"
+        tools:layout="@layout/fragment_backlog_game" >
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_gameBacklogFragment_to_addGameFragment"
+            app:destination="@id/addGameFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.madlevel5task2.UI.BacklogFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
+        android:id="@+id/addGameFragment"
+        android:name="com.example.madlevel5task2.UI.AddGameFragment"
+        android:label="fragment_game_add"
+        tools:layout="@layout/fragment_game_add" >
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_addGameFragment_to_gameBacklogFragment"
+            app:destination="@id/gameBacklogFragment" />
     </fragment>
 </navigation>

@@ -1,10 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.madlevel5task2.UI.MainActivity">
+    tools:context="com.rayray.madlevel5task2.ui.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/bin"
+        android:icon="@android:drawable/ic_delete"
         android:orderInCategory="100"
         android:title="@string/action_settings"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
+
 </menu>
