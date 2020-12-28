@@ -20,37 +20,26 @@ abstract class GameRoomDatabase : RoomDatabase() {
 
     abstract fun gameDao(): GameDao
 
-    companion object {
+    //static
+    companion object{
         private const val DATABASE_NAME = "GAME_DATABASE"
 
         @Volatile
-        private var INSTANCE: GameRoomDatabase? = null
+        private var gameReleaseRoomDatabaseInstance: GameRoomDatabase? = null
 
-        fun getDatabase(context: Context): GameRoomDatabase? {
-            if (INSTANCE == null) {
-                synchronized(GameRoomDatabase::class.java) {
-                    if (INSTANCE == null) {
-                        INSTANCE = Room.databaseBuilder(
+        fun getDatabase(context: Context): GameRoomDatabase?{
+            if (gameReleaseRoomDatabaseInstance == null){
+                synchronized(GameRoomDatabase::class.java){
+                    if (gameReleaseRoomDatabaseInstance == null){
+                        gameReleaseRoomDatabaseInstance = Room.databaseBuilder(
                             context.applicationContext,
-                            GameRoomDatabase::class.java, DATABASE_NAME
-                        )
-                            .fallbackToDestructiveMigration()
-                            .addCallback(object : RoomDatabase.Callback() {
-                                override fun onCreate(db: SupportSQLiteDatabase) {
-                                    super.onCreate(db)
-                                    INSTANCE?.let { database ->
-                                        CoroutineScope(Dispatchers.IO).launch {
-                                            database.gameDao().insertGame(Game("Title", Date(), ""))
-                                        }
-                                    }
-                                }
-                            })
-
-                            .build()
+                            GameRoomDatabase::class.java,
+                            DATABASE_NAME
+                        ).build()
                     }
                 }
             }
-            return INSTANCE
+            return gameReleaseRoomDatabaseInstance
         }
     }
 

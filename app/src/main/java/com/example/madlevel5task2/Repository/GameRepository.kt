@@ -16,12 +16,19 @@ class GameRepository(context: Context) {
         gameDao = database!!.gameDao()
     }
 
-    fun getGames(): LiveData<Game?> {
-        return gameDao.getGame()
+    fun getAllGames(): LiveData<List<Game>>{
+        return gameDao.getAllGames() ?: MutableLiveData(emptyList())
     }
 
-    suspend fun updateGame(game: Game) {
-        gameDao.updateGame(game)
+    suspend fun insertGame(game: Game){
+        gameDao.insertGame(game)
     }
 
+    suspend fun deleteGame(game: Game){
+        gameDao.deleteGame(game)
+    }
+
+    suspend fun deleteAll(){
+        gameDao.deleteAll()
+    }
 }

@@ -2,6 +2,7 @@ package com.example.madlevel5task2.Viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.madlevel5task2.Repository.GameRepository
 import kotlinx.coroutines.CoroutineScope
@@ -12,40 +13,26 @@ import java.util.*
 
 class GameViewModelViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val gameRepository = GameRepository(application.applicationContext)
-    private val mainScope = CoroutineScope(Dispatchers.Main)
+    private val ioScope = CoroutineScope(Dispatchers.IO)
+    private  val gameRepository = GameRepository(application.applicationContext)
 
-    val game = gameRepository.getGames()
-    val error = MutableLiveData<String>()
-    val success = MutableLiveData<Boolean>()
+    val games: LiveData<List<Game>> = gameRepository.getAllGames()
 
-    fun updateGame(title: String, text: String) {
-
-        //if there is an existing note, take that id to update it instead of adding a new one
-        val newGame = Game(
-            id = game.value?.id,
-            title = title,
-            releaseDate = Date(),
-            platform = text
-        )
-
-        if(isGameValid(newGame)) {
-            mainScope.launch {
-                withContext(Dispatchers.IO) {
-                    gameRepository.updateGame(newGame)
-                }
-                success.value = true
-            }
+    fun insertGame(game: Game){
+        ioScope.launch {
+            gameRepository.insertGame(game)
         }
     }
 
-    private fun isGameValid(game: Game): Boolean {
-        return when {
-            game.title.isBlank() -> {
-                error.value = "Title must not be empty"
-                false
-            }
-            else -> true
+    fun deleteGame(game: Game){
+        ioScope.launch {
+            gameRepository.deleteGame(game)
+        }
+    }
+
+    fun deleteAllGames(){
+        ioScope.launch {
+            gameRepository.deleteAll()
         }
     }
 }
